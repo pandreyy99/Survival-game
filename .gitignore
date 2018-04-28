@@ -52,10 +52,6 @@
 .idea/**/gradle.xml
 .idea/**/libraries
 
-# CMake
-cmake-build-debug/
-cmake-build-release/
-
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
