@@ -21,7 +21,6 @@ public:
     std::pair < int , int > getPosition() ;
     void receivingAttack(int enemyAttackingPower) ;
     void move( int , int ) ;
-    void attackeee() ;
     virtual ~CounterTerorist() ;
     friend class map ;
 };

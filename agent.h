@@ -31,7 +31,6 @@ public:
     virtual int getAttackingPower() = 0 ;
     virtual void receivingAttack(int enemyAttackingPower) = 0 ;
     virtual void move( int x , int y ) = 0 ;
-    virtual void attackeee() = 0 ;
     void powerup ( powerups& powerup ) ;
     virtual ~ agent() ;
     friend class map ;

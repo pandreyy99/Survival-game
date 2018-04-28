@@ -45,8 +45,3 @@ void CounterTerorist::move( int x , int y ){
     this->setPosition( x , y ) ;
 }
 
-void CounterTerorist::attackeee() {
-    cout << '\n' << " CT attacked " ;
-}
-
-
