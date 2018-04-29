@@ -1,8 +1,5 @@
 #include <iostream>
 #include "cmake-build-debug/CMakeFiles/map.h"
-#include "cmake-build-debug/CMakeFiles/terorist.h"
-#include "CounterTerorist.h"
-#include "cmake-build-debug/CMakeFiles/Mercenary.h"
 
 using namespace std ;
 

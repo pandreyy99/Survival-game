@@ -193,31 +193,33 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 1 S
          */
-        if ( table[x + i][y] == 0 ) {
+        if( table[x + i][y] == 0 ){
             maxim = max(maxim, 0);
-            agentPosition = make_pair( x + i , y );
+            agentPosition = make_pair(x + i, y);
         }
-        else if ( table[x + i][y] < 0 ) {
+        else if( table[x + i][y] < 0 ){
             maxim = max(maxim, 1);
-            agentPosition = make_pair( x + i , y );
+            agentPosition = make_pair(x + i, y);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x + i][y] > 0 ){
             maxim = max(maxim, 2);
-            agentPosition = make_pair( x + i , y );
+            agentPosition = make_pair(x + i, y);
             if (maxim == ok) return agentPosition;
         }
         /**
          * caz 2 N
          */
-        if ( table[x - i][y] == 0) {
+        else if( table[x - i][y] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair( x - i , y );
         }
-        else if ( table[x - i][y] < 0) {
+        else if ( table[x - i][y] < 0 ){
             maxim = max(maxim, 1);
             agentPosition = make_pair( x - i , y );
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x - i][y] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x - i, y);
             if (maxim == ok) return agentPosition;
@@ -225,15 +227,16 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 3 E
          */
-        if (table[x][y + i] == 0 ) {
+        else if( table[x][y + i] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair(x , y + i);
         }
-        else if ( table[x][y + i] < 0 ) {
+        else if ( table[x][y + i] < 0 ){
             maxim = max(maxim, 1);
             agentPosition = make_pair(x , y + i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x][y + i] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x , y + i);
             if (maxim == ok) return agentPosition;
@@ -241,7 +244,7 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 4 V
          */
-        if (table[x][y - i] == 0 ) {
+        else if (table[x][y - i] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair(x , y - i);
         }
@@ -249,7 +252,8 @@ std::pair < int , int > map::find( agent* other , int ok ) {
             maxim = max(maxim, 1);
             agentPosition = make_pair(x , y - i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x][y - i] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x , y - i);
             if (maxim == ok) return agentPosition;
@@ -257,15 +261,16 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 5 N-V
          */
-        if (table[x - i][y - i] == 0 ) {
+        else if (table[x - i][y - i] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair(x - i , y - i);
         }
-        else if ( table[x - i][y - i] < 0 ) {
+        else if ( table[x - i][y - i] < 0 ){
             maxim = max(maxim, 1);
             agentPosition = make_pair(x - i , y - i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x - i][y - i] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x - i , y - i);
             if (maxim == ok) return agentPosition;
@@ -273,15 +278,16 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 6 N-E
          */
-        if (table[x - i][y + i] == 0 ) {
+        else if (table[x - i][y + i] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair(x - i , y + i);
         }
-        else if ( table[x - i][y + i] < 0 ) {
+        else if ( table[x - i][y + i] < 0 ){
             maxim = max(maxim, 1);
             agentPosition = make_pair(x - i , y + i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x - i][y + i] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x - i , y + i);
             if (maxim == ok) return agentPosition;
@@ -289,15 +295,16 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 7 S-E
          */
-        if ( table[x + i][y + i] == 0 ) {
+        else if ( table[x + i][y + i] == 0 ){
             maxim = max(maxim, 0);
             agentPosition = make_pair(x + i , y + i);
         }
-        else if ( table[x + i][y + i] < 0 ) {
+        else if ( table[x + i][y + i] < 0 ){
             maxim = max(maxim, 1);
             agentPosition = make_pair(x + i , y + i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x + i][y + i] > 0 ){
             maxim = max(maxim, 2);
             agentPosition = make_pair(x + i , y + i);
             if (maxim == ok) return agentPosition;
@@ -305,7 +312,7 @@ std::pair < int , int > map::find( agent* other , int ok ) {
         /**
          * caz 8 S-V
          */
-        if ( table[x + i][y - i] == 0 ) {
+        else if ( table[x + i][y - i] == 0 ) {
             maxim = max(maxim, 0);
             agentPosition = make_pair(x + i , y - i);
         }
@@ -313,7 +320,8 @@ std::pair < int , int > map::find( agent* other , int ok ) {
             maxim = max(maxim, 1);
             agentPosition = make_pair(x + i , y - i);
             if (maxim == ok) return agentPosition;
-        } else {
+        }
+        else if( table[x + i][y - i] > 0 ) {
             maxim = max(maxim, 2);
             agentPosition = make_pair(x + i , y - i);
             if (maxim == ok) return agentPosition;
@@ -341,116 +349,103 @@ void map::simulateRound(agent** vectorAgenti , powerups** vectorItems , int nrAg
         if( i % 3 == 0 ){
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
-                nextPosition = find(vectorAgenti[i], 2);
-                int x = curentPosition.first, y = curentPosition.second;
+                nextPosition = find(vectorAgenti[i] , 2);
+                int x = curentPosition.first , y = curentPosition.second;
                 table[x][y] = 0;
                 x = nextPosition.first;
                 y = nextPosition.second;
-                if (table[x][y] == 0) {
-                    vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
+                if ( table[x][y] == 0 ){
+                    vectorAgenti[i]->move(x  , y);
+                    table[x][y] = 1 ;
                 }
-                else if (table[x][y] < 0) {
-                    powerups *temp = findPowerUp(vectorItems, nrItems, x, y);
+                else if ( table[x][y] < 0 ){
+                    powerups *temp = findPowerUp(vectorItems , nrItems , x , y);
                     vectorAgenti[i]->powerup(*temp);
-                    vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
+                    vectorAgenti[i]->move(x , y);
+                    table[x][y] = 1 ;
                 }
                 else {
                     agent *temp;
-                    temp = findAgent(vectorAgenti, nrAgents, x, y);
-                    while (vectorAgenti[i]->getDOA() == true && temp->getDOA() == true ) {
+                    temp = findAgent(vectorAgenti , nrAgents , x , y);
+                    while( vectorAgenti[i]->getDOA() && temp->getDOA() ){
                         vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
                         temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
                     }
-                    if ( vectorAgenti[i]->getDOA() ) {
+                    if ( vectorAgenti[i]->getDOA() ){
                         vectorAgenti[i]->move(x, y);
-                        table[x][y] = i + 1;
+                        table[x][y] = 1;
                     }
-                    if( !temp->getDOA() ) {
-                        pair < int , int > temporara = temp->getPosition() ;
-                        x = temporara.first ;
-                        y = temporara.second ;
+                    if( !temp->getDOA() )
                         table[x][y] = 0 ;
-                    }
                 }
             }
         if( i % 3 == 1 ){
-                pair<int, int> curentPosition, nextPosition;
-                curentPosition = vectorAgenti[i]->getPosition();
-                nextPosition = find(vectorAgenti[i], 2);
-                int x = curentPosition.first, y = curentPosition.second;
-                table[x][y] = 0;
-                x = nextPosition.first;
-                y = nextPosition.second;
-                if (table[x][y] == 0) {
-                    vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
-                }
-                else if (table[x][y] < 0) {
-                    powerups *temp = findPowerUp(vectorItems, nrItems, x, y);
-                    vectorAgenti[i]->powerup(*temp);
-                    vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
-                }
-                else {
-                    agent *temp;
-                    temp = findAgent(vectorAgenti, nrAgents, x, y);
-                    while (vectorAgenti[i]->getDOA() == true && temp->getDOA() == true ) {
-                        vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
-                        temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
-                    }
-                    if (vectorAgenti[i]->getDOA()) {
-                        vectorAgenti[i]->move(x, y);
-                        table[x][y] = i + 1;
-                    }
-                    if( !temp->getDOA() ) {
-                        pair < int , int > temporara = temp->getPosition() ;
-                        x = temporara.first ;
-                        y = temporara.second ;
-                        table[x][y] = 0 ;
-                    }
-                }
+            pair<int, int> curentPosition, nextPosition;
+            curentPosition = vectorAgenti[i]->getPosition();
+            nextPosition = find(vectorAgenti[i], 1);
+            int x = curentPosition.first, y = curentPosition.second;
+            table[x][y] = 0;
+            x = nextPosition.first;
+            y = nextPosition.second;
+            if (table[x][y] == 0){
+                vectorAgenti[i]->move(x , y);
+                table[x][y] = 2;
             }
-            if( i % 3 == 2 ){
-                pair<int, int> curentPosition, nextPosition;
-                curentPosition = vectorAgenti[i]->getPosition();
-                nextPosition = find(vectorAgenti[i], 2);
-                int x = curentPosition.first, y = curentPosition.second;
-                table[x][y] = 0;
-                x = nextPosition.first;
-                y = nextPosition.second;
-                if (table[x][y] == 0) {
+            else if(table[x][y] < 0){
+                powerups *temp = findPowerUp(vectorItems, nrItems, x, y);
+                vectorAgenti[i]->powerup(*temp);
+                vectorAgenti[i]->move(x , y);
+                table[x][y] = 2;
+            }
+            else{
+                agent *temp;
+                temp = findAgent(vectorAgenti, nrAgents, x, y);
+                while (vectorAgenti[i]->getDOA() && temp->getDOA()) {
+                    vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
+                    temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
+                }
+                if (vectorAgenti[i]->getDOA()) {
                     vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
+                    table[x][y] = 2;
                 }
-                else if (table[x][y] < 0) {
-                    powerups *temp = findPowerUp(vectorItems, nrItems, x, y);
-                    vectorAgenti[i]->powerup(*temp);
-                    vectorAgenti[i]->move(x, y);
-                    table[x][y] = i + 1;
-                }
-                else {
-                    agent *temp;
-                    temp = findAgent(vectorAgenti, nrAgents, x, y);
-                    while (vectorAgenti[i]->getDOA() == true && temp->getDOA() == true ) {
-                        vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
-                        temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
-                    }
-                    if (vectorAgenti[i]->getDOA()) {
-                        bool x = vectorAgenti[i]->getDOA();
-                        vectorAgenti[i]->move(x, y);
-                        table[x][y] = i + 1;
-                    }
-                    if( !temp->getDOA() ) {
-                        pair < int , int > temporara = temp->getPosition() ;
-                        x = temporara.first ;
-                        y = temporara.second ;
-                        table[x][y] = 0 ;
-                    }
-                }
+                if (!temp->getDOA())
+                    table[x][y] = 0;
             }
         }
+        if( i % 3 == 2 ){
+            pair<int, int> curentPosition, nextPosition;
+            curentPosition = vectorAgenti[i]->getPosition();
+            nextPosition = find(vectorAgenti[i] , 1);
+            int x = curentPosition.first , y = curentPosition.second;
+            table[x][y] = 0;
+            x = nextPosition.first;
+            y = nextPosition.second;
+            if ( table[x][y] == 0 ){
+                vectorAgenti[i]->move(x , y);
+                table[x][y] = 3;
+            }
+            else if ( table[x][y] < 0 ){
+                powerups *temp = findPowerUp(vectorItems , nrItems , x , y);
+                vectorAgenti[i]->powerup(*temp);
+                vectorAgenti[i]->move(x , y);
+                table[x][y] = 3;
+                }
+            else{
+                agent *temp;
+                temp = findAgent(vectorAgenti , nrAgents , x , y);
+                while( vectorAgenti[i]->getDOA() && temp->getDOA() ){
+                    vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
+                    temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
+                }
+                if( vectorAgenti[i]->getDOA() ){
+                    vectorAgenti[i]->move(x, y);
+                    table[x][y] = 3;
+                }
+                if( !temp->getDOA() )
+                    table[x][y] = 0;
+            }
+        }
+    }
 }
 
 void map::simulate( const int nrAgents , const int nrItems ){

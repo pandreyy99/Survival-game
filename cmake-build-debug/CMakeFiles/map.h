@@ -23,7 +23,6 @@ public:
     std::pair < int , int > find( agent* other , int ok ) ;
     friend agent* findAgent( agent** vectorAgenti , int nrAgents , int x , int y ) ;
     friend powerups* findPowerUp( powerups** vectorItems , int nrItems , int x , int y ) ;
-    void afis( agent** , int ) ;
     void simulateRound( agent** vectorAgenti , powerups** vectorItems , int nrAgents , int nrItems ) ;
     void simulate( int nrAgents , int nrItems ) ;
     void afisare() ;
