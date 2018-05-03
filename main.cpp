@@ -19,8 +19,7 @@ int main() {
     }
     cout << "...Si nr de iteme : " ;
     cin >> nrItems ;
-    cout << "Simulare inceputa!" << '\n' << '\n' << flush ;
-    system("CLS") ;
+    cout << "Simulare inceputa!" << '\n' << '\n';
     MAP.simulate( nrAgents , nrItems );
     return 0;
 }

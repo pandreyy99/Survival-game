@@ -24,7 +24,6 @@ public:
     bool getDOA() ;
     std::pair < int , int > getPosition() ;
     void receivingAttack(int enemyAttackingPower) ;
-    void move( int , int ) ;
     virtual ~Mercenary() ;
     friend class map ;
 };

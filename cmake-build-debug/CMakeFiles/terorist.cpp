@@ -37,7 +37,6 @@ std::pair < int , int > terorist::getPosition(){
 
 terorist::~terorist(){
     superAttack = kamikaze = 0 ;
-    delete(this) ;
 }
 
 void terorist::receivingAttack(int enemyAttackingPower){
@@ -45,7 +44,6 @@ void terorist::receivingAttack(int enemyAttackingPower){
     if( this->getDefence() < 0 ){
         this->setLifePoint( this->getLifePoint() + this->getDefence() ) ;
         this->setDefence(0) ;
-        this->setDOA( this->getLifePoint() ) ;
     }
     /**
       * efectul kamikaze
@@ -55,9 +53,6 @@ void terorist::receivingAttack(int enemyAttackingPower){
         this->setLifePoint( this->getLifePoint() + this->getDefence() ) ;
         this->setDefence(0) ;
     }
+    ///verificam daca mai e in viata
+    this->setDOA(this->getLifePoint());
 }
-
-void terorist::move( int x , int y ){
-    this->setPosition( x , y ) ;
-}
-

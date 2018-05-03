@@ -24,7 +24,6 @@ public:
     bool getDOA() ;
     std::pair < int , int > getPosition() ;
     void receivingAttack(int enemyAttackingPower) ;
-    void move( int x , int y ) ;
     virtual ~terorist() ;
     friend class map ;
 };

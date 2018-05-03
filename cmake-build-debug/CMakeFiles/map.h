@@ -18,14 +18,24 @@ class map {
 public:
     map( int , int ) ;
     virtual ~map() ;
-    void initialize() ;
-    void create( agent** vectorAgenti , powerups** vectorItems , int nrItems , int nrAgent ) ;
+
+    void create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems);
     std::pair < int , int > find( agent* other , int ok ) ;
     friend agent* findAgent( agent** vectorAgenti , int nrAgents , int x , int y ) ;
     friend powerups* findPowerUp( powerups** vectorItems , int nrItems , int x , int y ) ;
-    void simulateRound( agent** vectorAgenti , powerups** vectorItems , int nrAgents , int nrItems ) ;
+
+    friend int verifExista(agent **vectorAgenti, int nrAgents);
+
+    friend int whichAgent(agent **vectorAgents, int nrAgents, int x, int y);
+
+    friend int whichPowerUp(powerups **vectorItems, int nrItems, int x, int y);
+
+    void simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
     void simulate( int nrAgents , int nrItems ) ;
-    void afisare() ;
+
+    void afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
+
+    void afis();
 };
 
 #endif //POO2_MAP_H

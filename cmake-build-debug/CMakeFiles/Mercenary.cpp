@@ -9,7 +9,6 @@ using namespace std ;
 
 Mercenary::~Mercenary(){
     superAttack = extraDefence = 0 ;
-    delete(this) ;
 }
 
 void Mercenary::setSuperAttack( int atribute ) {
@@ -47,8 +46,4 @@ void Mercenary::receivingAttack(int enemyAttackingPower){
         this->setDefence(0) ;
         this->setDOA( this->getLifePoint() ) ;
     }
-}
-
-void Mercenary::move( int x , int y ){
-    this->setPosition( x , y ) ;
 }

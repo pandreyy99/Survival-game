@@ -38,16 +38,13 @@ int agent::getAttackPower () {
     return attackPower ;
 }
 
-void agent::setPosition ( int x , int y ) {
-    position = std::make_pair( x , y ) ;
-}
-
 std::pair<int, int> agent::getPosition () {
     return position ;
 }
 
 void agent::setDOA ( int atribute ) {
-    deadOrAlive = atribute > 0;
+    if (atribute > 0) deadOrAlive = true;
+    else deadOrAlive = false;
 }
 
 bool agent::getDOA () {
@@ -55,16 +52,18 @@ bool agent::getDOA () {
 }
 
 void agent::powerup ( powerups& powerup ) {
-    if( powerup.getType() == 'H' )
-        lifePoint += powerup.getAspirine() ;
-    else if ( powerup.getType() == 'F' )
-        attackPower += powerup.getFood() * 10 ;
-    else if (strcmp(reinterpret_cast<const char *>(powerup.getType()), reinterpret_cast<const char *>("A")) == 0 )
-        defence += powerup.getHelmet() ;
+    lifePoint += powerup.getAspirine();
+    defence += powerup.getHelmet();
+    attackPower += powerup.getFood();
 }
 
 agent::~ agent() {
     lifePoint = defence = attackPower = 0 ;
     position = std::make_pair( 0 , 0 ) ;
     deadOrAlive = false ;
+}
+
+void agent::move(int x, int y) {
+    position.first = x;
+    position.second = y;
 }

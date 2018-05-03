@@ -9,7 +9,6 @@ using namespace std ;
 
 CounterTerorist::~CounterTerorist() {
     ExtraDefence = 0 ;
-    delete this ;
 }
 
 void CounterTerorist::setExtraDefence( int atribute ){
@@ -39,9 +38,5 @@ void CounterTerorist::receivingAttack(int enemyAttackingPower){
         this->setDefence(0) ;
         this->setDOA( this->getLifePoint() ) ;
     }
-}
-
-void CounterTerorist::move( int x , int y ){
-    this->setPosition( x , y ) ;
 }
 

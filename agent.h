@@ -30,7 +30,8 @@ public:
     virtual bool getDOA () ;
     virtual int getAttackingPower() = 0 ;
     virtual void receivingAttack(int enemyAttackingPower) = 0 ;
-    virtual void move( int x , int y ) = 0 ;
+
+    void move(int x, int y);
     void powerup ( powerups& powerup ) ;
     virtual ~ agent() ;
     friend class map ;
