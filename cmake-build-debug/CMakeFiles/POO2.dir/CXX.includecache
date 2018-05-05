@@ -93,12 +93,10 @@ iostream
 -
 cmake-build-debug/CMakeFiles/map.h
 C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/CMakeFiles/map.h
-C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/CMakeFiles/Mercenary.h
--
-C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/CMakeFiles/terorist.h
--
+CounterTerorist.h
 C:/Users/Andrei/Documents/GitHub/Survival-game/CounterTerorist.h
--
-C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/powerups.h
--
+cmake-build-debug/CMakeFiles/Mercenary.h
+C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/CMakeFiles/Mercenary.h
+cmake-build-debug/CMakeFiles/terorist.h
+C:/Users/Andrei/Documents/GitHub/Survival-game/cmake-build-debug/CMakeFiles/terorist.h
 

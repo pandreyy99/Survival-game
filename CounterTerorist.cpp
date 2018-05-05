@@ -5,38 +5,34 @@
 #include "CounterTerorist.h"
 #include <iostream>
 
-using namespace std ;
+using namespace std;
 
 CounterTerorist::~CounterTerorist() {
-    ExtraDefence = 0 ;
+    ExtraDefence = 0;
 }
 
-void CounterTerorist::setExtraDefence( int atribute ){
-    ExtraDefence = atribute ;
+void CounterTerorist::setExtraDefence(int atribute) {
+    ExtraDefence = atribute;
 }
 
-int CounterTerorist::getExtraDefence(){
-    return ExtraDefence ;
+int CounterTerorist::getExtraDefence() {
+    return ExtraDefence;
 }
 
 int CounterTerorist::getAttackingPower() {
-    return this->getAttackPower() ;
+    return this->getAttackPower();
 }
 
-bool CounterTerorist::getDOA(){
-    return deadOrAlive ;
+std::pair<int, int> CounterTerorist::getPosition() {
+    return position;
 }
 
-std::pair < int , int > CounterTerorist::getPosition(){
-    return position ;
-}
-
-void CounterTerorist::receivingAttack(int enemyAttackingPower){
-    this->setDefence( this->getDefence() - enemyAttackingPower ) ;
-    if( this->getDefence() < 0 ){
-        this->setLifePoint( this->getLifePoint() + this->getDefence() ) ;
-        this->setDefence(0) ;
-        this->setDOA( this->getLifePoint() ) ;
+void CounterTerorist::receivingAttack(int enemyAttackingPower) {
+    this->setDefence(this->getDefence() - enemyAttackingPower);
+    if (this->getDefence() < 0) {
+        this->setLifePoint(this->getLifePoint() + this->getDefence());
+        this->setDefence(0);
+        this->setDOA(this->getLifePoint());
     }
 }
 

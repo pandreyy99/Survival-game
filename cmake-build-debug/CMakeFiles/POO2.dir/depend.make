@@ -28,8 +28,11 @@ CMakeFiles/POO2.dir/agent.cpp.obj: ../agent.cpp
 CMakeFiles/POO2.dir/agent.cpp.obj: ../agent.h
 CMakeFiles/POO2.dir/agent.cpp.obj: powerups.h
 
+CMakeFiles/POO2.dir/main.cpp.obj: ../CounterTerorist.h
 CMakeFiles/POO2.dir/main.cpp.obj: ../agent.h
+CMakeFiles/POO2.dir/main.cpp.obj: CMakeFiles/Mercenary.h
 CMakeFiles/POO2.dir/main.cpp.obj: CMakeFiles/map.h
+CMakeFiles/POO2.dir/main.cpp.obj: CMakeFiles/terorist.h
 CMakeFiles/POO2.dir/main.cpp.obj: powerups.h
 CMakeFiles/POO2.dir/main.cpp.obj: ../main.cpp
 

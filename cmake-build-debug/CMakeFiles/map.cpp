@@ -15,14 +15,14 @@
 using namespace std;
 
 map::map(int line, int column) {
-    lines = line ;
-    columns = column ;
+    lines = line;
+    columns = column;
     table = new int *[lines];
     for (int i = 0; i < lines; i++)
         table[i] = new int[columns];
     for (int i = 0; i < lines; i++)
         for (int j = 0; j < columns; j++)
-            table[i][j] = 0 ;
+            table[i][j] = 0;
 }
 
 map::~map() {
@@ -48,10 +48,10 @@ int whichPowerUp(powerups **vectorItems, int nrItems, int x, int y) {
 }
 
 void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, int nrItems, int nrRound) {
-    ofstream out("C:\\Users\\Andrei\\Documents\\GitHub\\Survival-game\\afisare.txt");
+    fstream out("C:\\Users\\Andrei\\Documents\\GitHub\\Survival-game\\afisare.txt", fstream::out | fstream::app);
     string temp;
 
-    out << "Configuratia hartii in cadrul rundei " << nrRound << " : " << '\n';
+    out << '\n' << "Configuratia hartii in cadrul rundei " << nrRound << " : " << '\n';
 
     for (int i = 0; i < 3 * (columns - 1); i++)
         out << "- ";
@@ -65,21 +65,21 @@ void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, in
                     temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             } else if (table[i][j] == -2) {
                 temp = "F";
                 if (whichPowerUp(vectorItems, nrItems, i, j) != -1) {
                     temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             } else if (table[i][j] == -1) {
                 temp = "A";
                 if (whichPowerUp(vectorItems, nrItems, i, j) != -1) {
                     temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             } else if (table[i][j] == 0) out << "   ";
             else if (table[i][j] == 1) {
                 temp = "T";
@@ -87,21 +87,21 @@ void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, in
                     temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             } else if (table[i][j] == 2) {
                 temp = "CT";
                 if (whichAgent(vectorAgents, nrAgents, i, j) != -1) {
                     temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             } else {
                 temp = "M";
                 if (whichAgent(vectorAgents, nrAgents, i, j) != -1) {
                     temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
                     temp.append(" ");
                     out << temp;
-                } else out << "   ";
+                } else out << " G ";
             }
         }
         out << " |";
@@ -110,62 +110,6 @@ void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, in
     for (int i = 0; i < 3 * (columns - 1); i++)
         out << "- ";
 }
-
-/**void map::afisare( int nrRound) {
-   /// ofstream cout("C:\\Users\\Andrei\\Documents\\GitHub\\Survival-game\\afisare.txt") ;
-    string temp ;
-    int indiceH = 0 , indiceF = 0 , indiceA = 0 ;
-    int indiceT = 0 , indiceCt = 0 , indiceM = 0 ;
-    cout << "Configuratia la runda " << nrRound << " : " << '\n' ;
-    for( int i = 0 ; i < 3 * (columns - 2)  ; i++ )
-        cout << "- " ;
-    cout << endl ;
-    for( int i = 0 ; i < lines ; i++ ){
-        for( int j = 0 ; j < columns ; j++ ){
-            cout << "| " ;
-            if( table[i][j] == -3 ) {
-                temp = "H" ;
-                temp.append(to_string(++indiceH)) ;
-                temp.append(" ") ;
-                cout << temp ;
-            }
-            else if( table[i][j] == -2 ) {
-                temp = "F" ;
-                temp.append(to_string(++indiceF)) ;
-                temp.append(" ") ;
-                cout << temp ;
-            }
-            else if( table[i][j] == -1 ) {
-                temp = "A" ;
-                temp.append(to_string(++indiceA)) ;
-                temp.append(" ") ;
-                cout << temp ;
-            }
-            else if( table[i][j] == 0 ) cout << "E " ;
-            else if( table[i][j] == 1 ) {
-                temp = "T" ;
-                temp.append(to_string(++indiceT)) ;
-                temp.append(" ") ;
-                cout << temp ;
-            }
-            else if( table[i][j] == 2 ) {
-                temp = "CT" ;
-                temp.append(to_string(++indiceCt)) ;
-                cout << temp ;
-            }
-            else {
-                temp = "M";
-                temp.append(to_string(++indiceM)) ;
-                temp.append(" ") ;
-                cout << temp ;
-            }
-        }
-        cout << " |" ;
-        cout << '\n' ;
-    }
-    for( int i = 0 ; i < 3 * (columns - 2) ; i++ )
-        cout << "- " ;
-}*/
 
 void map::afis() {
     for (int i = 0; i < lines; i++) {
@@ -177,16 +121,11 @@ void map::afis() {
     }
 }
 
-/**void map::afis( agent** vectorAgents , int nrAgents ) {
-    for( int i = 0 ; i < nrAgents ; i++ )
-        cout << "Agentul " << i+1 << " are pozitia ( " << vectorAgents[i]->getPosition().first << " , " << vectorAgents[i]->getPosition().second << " )\n" ;
-}*/
-
 void map::create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems) {
     default_random_engine generator;
     uniform_int_distribution<int> distribution;
     int x, y;
-    bool ok ;
+    bool ok;
     for (int i = 0; i < nrAgents; i++) {
         if (i % 3 == 0) {
             ok = true;
@@ -276,7 +215,7 @@ void map::create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int
 
 std::pair<int, int> map::find(agent *other, int ok) {
     pair<int, int> agentPosition = other->getPosition(), nextPosition;
-    int x = agentPosition.first , y = agentPosition.second , maxim = -1 ;
+    int x = agentPosition.first, y = agentPosition.second, maxim = -1;
     int dir[4] = {-2, -1, 1, 2};
     for (int i = 1; i <= 2; i++) {
         /// Caz 1 : S
@@ -289,10 +228,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x + i, y);
                 if (maxim == ok) return nextPosition;
+                else goto N;
             }
         }
             /// Caz 2 : N
-        else if (x - i >= 0) {
+        N :
+        if (x - i >= 0) {
             if (table[x - i][y] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x - i, y);
@@ -301,10 +242,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x - i, y);
                 if (maxim == ok) return nextPosition;
+                else goto E;
             }
         }
             /// Caz 3 : E
-        else if (y + i < columns) {
+        E :
+        if (y + i < columns) {
             if (table[x][y + i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x, y + i);
@@ -313,10 +256,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x, y + i);
                 if (maxim == ok) return nextPosition;
+                else goto V;
             }
         }
             /// Caz 4 : V
-        else if (y - i >= 0) {
+        V :
+        if (y - i >= 0) {
             if (table[x][y - i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x, y - i);
@@ -325,10 +270,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x, y - i);
                 if (maxim == ok) return nextPosition;
+                else goto NV;
             }
         }
             /// Caz 5 : N-V
-        else if (x - i >= 0 and y - i >= 0) {
+        NV :
+        if (x - i >= 0 and y - i >= 0) {
             if (table[x - i][y - i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x - i, y - i);
@@ -337,10 +284,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x - i, y - i);
                 if (maxim == ok) return nextPosition;
+                else goto NE;
             }
         }
             /// Caz 6 : N-E
-        else if (x - i >= 0 and y + i < columns) {
+        NE :
+        if (x - i >= 0 and y + i < columns) {
             if (table[x - i][y + i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x - i, y + i);
@@ -349,10 +298,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x - i, y + i);
                 if (maxim == ok) return nextPosition;
+                else goto SE;
             }
         }
             /// Caz 7 : S-E
-        else if (x + i < lines and y + i < columns) {
+        SE :
+        if (x + i < lines and y + i < columns) {
             if (table[x + i][y + i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x + i, y + i);
@@ -361,10 +312,12 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x + i, y + i);
                 if (maxim == ok) return nextPosition;
+                else goto SV;
             }
         }
             /// Caz 8 : S-V
-        else if (x + i < lines and y - i >= 0) {
+        SV :
+        if (x + i < lines and y - i >= 0) {
             if (table[x + i][y - i] < 0) {
                 maxim = max(maxim, 1);
                 nextPosition = make_pair(x + i, y - i);
@@ -373,11 +326,13 @@ std::pair<int, int> map::find(agent *other, int ok) {
                 maxim = max(maxim, 2);
                 nextPosition = make_pair(x + i, y - i);
                 if (maxim == ok) return nextPosition;
+                else goto EXIT;
             }
         }
     }
     /// daca nu gasim ce era prioritar ,  verificam daca am gasit ceva de o prioritate mai mica
     /// si returnam ultima astfel de pozitie
+    EXIT :
     if (maxim >= 1) return nextPosition;
     /// daca nu am gasit nimic , generam o pozitie viitoare random
     while (maxim != 0) {
@@ -408,7 +363,7 @@ powerups *findPowerUp(powerups **vectorItems, int nrItems, int x, int y) {
 
 int verifExista(agent **vectorAgenti, int nrAgents) {
     int nrAlive = 0, poz;
-    for (int i = 0; i < nrAgents; i++)
+    for (int i = 0; i < nrAgents && nrAlive <= 2; i++)
         if (vectorAgenti[i]->getDOA()) {
             nrAlive++;
             poz = i;
@@ -422,6 +377,7 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
     for (int i = 0; i < nrAgents; i++) {
         if (vectorAgenti[i]->getDOA()) {
             if (i % 3 == 0) {
+                cout << "It's terorist " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 2);
@@ -445,16 +401,20 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                             vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
                             temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
                         }
+                        if (vectorAgenti[i]->getDOA()) {
+                            table[x][y] = 1;
+                            vectorAgenti[i]->move(x, y);
+                        } else {
+                            vectorAgenti[i]->move(-1, -1);
+                            if (!temp->getDOA()) {
+                                temp->move(-1, -1);
+                                table[x][y] = 0;
+                            }
+                        }
                     } else cout << "Return de agent gresit!\n";
-
-                    if (vectorAgenti[i]->getDOA()) {
-                        table[x][y] = 1;
-                        vectorAgenti[i]->move(x, y);
-                    } else if (!temp->getDOA()) {
-                        table[x][x] = 0;
-                    }
                 }
             } else if (i % 3 == 1) {
+                cout << "It's counter-terorist " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 1);
@@ -478,15 +438,20 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                             vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
                             temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
                         }
+                        if (vectorAgenti[i]->getDOA()) {
+                            table[x][y] = 2;
+                            vectorAgenti[i]->move(x, y);
+                        } else {
+                            vectorAgenti[i]->move(-1, -1);
+                            if (!temp->getDOA()) {
+                                temp->move(-1, -1);
+                                table[x][y] = 0;
+                            }
+                        }
                     } else cout << "Return de agent gresit!\n";
-                    if (vectorAgenti[i]->getDOA()) {
-                        table[x][y] = 2;
-                        vectorAgenti[i]->move(x, y);
-                    } else if (!temp->getDOA()) {
-                        table[x][y] = 0;
-                    }
                 }
             } else if (i % 3 == 2) {
+                cout << "It's mercenary " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 1);
@@ -510,25 +475,28 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                             vectorAgenti[i]->receivingAttack(temp->getAttackingPower());
                             temp->receivingAttack(vectorAgenti[i]->getAttackingPower());
                         }
+                        if (vectorAgenti[i]->getDOA()) {
+                            table[x][y] = 3;
+                            vectorAgenti[i]->move(x, y);
+                        } else {
+                            vectorAgenti[i]->move(-1, -1);
+                            if (!temp->getDOA()) {
+                                temp->move(-1, -1);
+                                table[x][y] = 0;
+                            }
+                        }
                     } else cout << "Return de agent gresit!\n";
-
-                    if (vectorAgenti[i]->getDOA()) {
-                        table[x][y] = 3;
-                        vectorAgenti[i]->move(x, y);
-                    } else if (!temp->getDOA()) {
-                        table[x][y] = 0;
-                    }
                 }
             }
         }
     }
-    this->afisare(vectorAgenti, vectorItems, nrAgents, nrItems, ++nrRound);
+    this->afisare(vectorAgenti, vectorItems, nrAgents, nrItems, nrRound);
     cout << endl << endl;
     this->afis();
 }
 
 void map::simulate(const int nrAgents, const int nrItems) {
-    char continuare ;
+    char continuare;
     int nrRounds = 0;
     agent *vectorAgents[nrAgents];
     powerups *vectorItems[nrItems];
@@ -563,7 +531,8 @@ void map::simulate(const int nrAgents, const int nrItems) {
                 continuare = 'n';
             }
         } else if (verifExista(vectorAgents, nrAgents) == -2) {
-            cout << "Nu se mai poate simula!\nNu mai exista agenti in viata!\nLa revedere!\n";
+            continuare = 'n';
+            cout << "Nu se mai poate simula!\nNu mai exista agenti in viata!\nE egalitate!\nLa revedere!\n";
         }
     } while (continuare == 'Y' or continuare == 'y');
     cout << endl;

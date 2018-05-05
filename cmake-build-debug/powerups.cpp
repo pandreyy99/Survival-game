@@ -4,69 +4,68 @@
 
 #include "powerups.h"
 
-powerups::powerups( char powerupType , int x , int y ){
-    type = powerupType ;
-    position = std::make_pair( x , y ) ;
-    switch( type ){
+powerups::powerups(char powerupType, int x, int y) {
+    type = powerupType;
+    position = std::make_pair(x, y);
+    switch (type) {
         case 'A' :
-            aspirine = 25 ;
-            food = helmet = 0 ;
-            break ;
+            aspirine = 25;
+            food = helmet = 0;
+            break;
         case 'F' :
-            food = 15 ;
-            aspirine = helmet = 0 ;
-            break ;
+            food = 15;
+            aspirine = helmet = 0;
+            break;
         case 'H' :
-            helmet = 10 ;
-            food = aspirine = 0 ;
-            break ;
+            helmet = 10;
+            food = aspirine = 0;
+            break;
         default :
-            aspirine = food = helmet = 0 ;
-            break ;
+            aspirine = food = helmet = 0;
+            break;
     }
 }
 
 powerups::~powerups() {
-    aspirine = food = helmet = 0 ;
-    delete this ;
+    aspirine = food = helmet = 0;
 }
 
-void powerups::setType( char atribute ){
-    type = atribute ;
+void powerups::setType(char atribute) {
+    type = atribute;
 }
 
-char powerups::getType(){
-    return type ;
+char powerups::getType() {
+    return type;
 }
 
-void powerups::setAspirine( int atribute ){
-    aspirine = atribute ;
+void powerups::setAspirine(int atribute) {
+    aspirine = atribute;
 }
 
-int powerups::getAspirine(){
-    return aspirine ;
+int powerups::getAspirine() {
+    return aspirine;
 }
 
-void powerups::setFood( int atribute ){
-    food = atribute ;
+void powerups::setFood(int atribute) {
+    food = atribute;
 }
 
-int powerups::getFood(){
-    return food ;
+int powerups::getFood() {
+    return food;
 }
 
-void powerups::setHelmet(int atribute){
-    helmet = atribute ;
+void powerups::setHelmet(int atribute) {
+    helmet = atribute;
 }
 
-int powerups::getHelmet(){
-    return helmet ;
+int powerups::getHelmet() {
+    return helmet;
 }
 
-void powerups::setPowerUpPosition(int x, int y){
-    position = std::make_pair( x , y ) ;
+void powerups::setPowerUpPosition(int x, int y) {
+    position = std::make_pair(x, y);
 }
 
-std::pair < int , int > powerups::getPowerUpPosition() {
-    return position ;
+std::pair<int, int> powerups::getPowerUpPosition() {
+    return position;
 }

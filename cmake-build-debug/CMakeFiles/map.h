@@ -10,19 +10,24 @@
 #include <string>
 #include "../../agent.h"
 
-using namespace std ;
+using namespace std;
 
 class map {
-    int **table ;
-    int lines , columns ;
+    int **table;
+    int lines, columns;
+
 public:
-    map( int , int ) ;
-    virtual ~map() ;
+    map(int, int);
+
+    virtual ~map();
 
     void create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems);
-    std::pair < int , int > find( agent* other , int ok ) ;
-    friend agent* findAgent( agent** vectorAgenti , int nrAgents , int x , int y ) ;
-    friend powerups* findPowerUp( powerups** vectorItems , int nrItems , int x , int y ) ;
+
+    std::pair<int, int> find(agent *other, int ok);
+
+    friend agent *findAgent(agent **vectorAgenti, int nrAgents, int x, int y);
+
+    friend powerups *findPowerUp(powerups **vectorItems, int nrItems, int x, int y);
 
     friend int verifExista(agent **vectorAgenti, int nrAgents);
 
@@ -31,7 +36,10 @@ public:
     friend int whichPowerUp(powerups **vectorItems, int nrItems, int x, int y);
 
     void simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
-    void simulate( int nrAgents , int nrItems ) ;
+
+    void simulate(int nrAgents, int nrItems);
+
+
 
     void afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
 
