@@ -9,6 +9,8 @@
 #include <random>
 #include <utility>
 
+using namespace std;
+
 class agent {
     int lifePoint;
     int defence;
@@ -16,38 +18,38 @@ class agent {
 
 protected:
     bool deadOrAlive;
-    std::pair<int, int> position;
+    pair<int, int> position;
 
 public:
-    agent(int lp, int def, int att, int x, int y);
+    agent(const int lp, const int def, const int att, const int x, const int y);
 
-    void setLifePoint(int atribute);
+    void setLifePoint(const int atribute);
 
-    int getLifePoint();
+    const int getLifePoint();
 
-    void setDefence(int atribute);
+    void setDefence(const int atribute);
 
-    int getDefence();
+    const int getDefence();
 
-    void setAttackPower(int atribute);
+    void setAttackPower(const int atribute);
 
-    int getAttackPower();
+    const int getAttackPower();
 
-    virtual std::pair<int, int> getPosition();
+    virtual pair<int, int> getPosition();
 
-    void setDOA(int atribute);
+    void setDOA(const int atribute);
 
     bool getDOA();
 
-    virtual int getAttackingPower() = 0;
+    virtual const int getAttackingPower() = 0;
 
-    virtual void receivingAttack(int enemyAttackingPower) = 0;
+    virtual void receivingAttack(const int enemyAttackingPower) = 0;
 
-    void move(int x, int y);
+    void move(const int x, const int y);
 
     void powerup(powerups &powerup);
 
-    virtual ~ agent();
+    virtual ~agent();
 
     friend class map;
 };

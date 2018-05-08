@@ -17,33 +17,31 @@ class map {
     int lines, columns;
 
 public:
-    map(int, int);
+    map(const int, const int);
 
     virtual ~map();
 
-    void create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems);
+    void create(agent **vectorAgenti, powerups **vectorItems, const int nrAgents, const int nrItems);
 
-    std::pair<int, int> find(agent *other, int ok);
+    std::pair<int, int> find(agent *other, const int ok);
 
-    friend agent *findAgent(agent **vectorAgenti, int nrAgents, int x, int y);
+    friend agent *findAgent(agent **vectorAgenti, const int nrAgents, const int x, const int y);
 
-    friend powerups *findPowerUp(powerups **vectorItems, int nrItems, int x, int y);
+    friend powerups *findPowerUp(powerups **vectorItems, const int nrItems, const int x, const int y);
 
-    friend int verifExista(agent **vectorAgenti, int nrAgents);
+    friend const int verifExista(agent **vectorAgenti, const int nrAgents);
 
-    friend int whichAgent(agent **vectorAgents, int nrAgents, int x, int y);
+    friend const int whichAgent(agent **vectorAgents, const int nrAgents, const int x, const int y);
 
-    friend int whichPowerUp(powerups **vectorItems, int nrItems, int x, int y);
+    friend const int whichPowerUp(powerups **vectorItems, const int nrItems, const int x, const int y);
 
-    void simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
+    void simulateRound(agent **vectorAgenti, powerups **vectorItems,
+                       const int nrAgents, const int nrItems, const int nrRound);
 
-    void simulate(int nrAgents, int nrItems);
+    void simulate(const int nrAgents, const int nrItems);
 
-
-
-    void afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, int nrItems, int nrRound);
-
-    void afis();
+    void afisare(agent **vectorAgents, powerups **vectorItems,
+                 const int nrAgents, const int nrItems, const int nrRound);
 };
 
 #endif //POO2_MAP_H

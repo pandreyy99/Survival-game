@@ -14,7 +14,7 @@
 
 using namespace std;
 
-map::map(int line, int column) {
+map::map(const int line, const int column) {
     lines = line;
     columns = column;
     table = new int *[lines];
@@ -32,25 +32,28 @@ map::~map() {
     delete table;
 }
 
-int whichAgent(agent **vectorAgents, int nrAgents, int x, int y) {
+const int whichAgent(agent **vectorAgents, const int nrAgents, const int x, const int y) {
     for (int i = 0; i < nrAgents; i++)
-        if (vectorAgents[i]->getPosition().first == x)
-            if (vectorAgents[i]->getPosition().second == y)
-                return i;
+        if (vectorAgents[i]->getDOA() == true)
+            if (vectorAgents[i]->getPosition().first == x)
+                if (vectorAgents[i]->getPosition().second == y) {
+                    return i;
+                }
     return -1;
 }
 
-int whichPowerUp(powerups **vectorItems, int nrItems, int x, int y) {
+const int whichPowerUp(powerups **vectorItems, const int nrItems, const int x, const int y) {
     for (int i = 0; i < nrItems; i++)
         if (vectorItems[i]->getPowerUpPosition().first == x and vectorItems[i]->getPowerUpPosition().second == y)
             return i;
     return -1;
 }
 
-void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, int nrItems, int nrRound) {
+void map::afisare(agent **vectorAgents, powerups **vectorItems,
+                  const int nrAgents, const int nrItems, const int nrRound) {
     fstream out("C:\\Users\\Andrei\\Documents\\GitHub\\Survival-game\\afisare.txt", fstream::out | fstream::app);
     string temp;
-
+    int converter;
     out << '\n' << "Configuratia hartii in cadrul rundei " << nrRound << " : " << '\n';
 
     for (int i = 0; i < 3 * (columns - 1); i++)
@@ -61,44 +64,62 @@ void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, in
             out << "| ";
             if (table[i][j] == -3) {
                 temp = "H";
+                converter = whichPowerUp(vectorItems, nrItems, i, j);
                 if (whichPowerUp(vectorItems, nrItems, i, j) != -1) {
-                    temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
             } else if (table[i][j] == -2) {
                 temp = "F";
+                converter = whichPowerUp(vectorItems, nrItems, i, j);
                 if (whichPowerUp(vectorItems, nrItems, i, j) != -1) {
-                    temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
             } else if (table[i][j] == -1) {
                 temp = "A";
+                converter = whichPowerUp(vectorItems, nrItems, i, j);
                 if (whichPowerUp(vectorItems, nrItems, i, j) != -1) {
-                    temp.append(to_string(whichPowerUp(vectorItems, nrItems, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
             } else if (table[i][j] == 0) out << "   ";
             else if (table[i][j] == 1) {
                 temp = "T";
+                converter = whichAgent(vectorAgents, nrAgents, i, j);
                 if (whichAgent(vectorAgents, nrAgents, i, j) != -1) {
-                    temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
             } else if (table[i][j] == 2) {
                 temp = "CT";
+                converter = whichAgent(vectorAgents, nrAgents, i, j);
                 if (whichAgent(vectorAgents, nrAgents, i, j) != -1) {
-                    temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
             } else {
                 temp = "M";
+                converter = whichAgent(vectorAgents, nrAgents, i, j);
                 if (whichAgent(vectorAgents, nrAgents, i, j) != -1) {
-                    temp.append(to_string(whichAgent(vectorAgents, nrAgents, i, j) / 3 + 1));
+                    converter = converter / 3;
+                    converter++;
+                    temp.append(to_string(converter));
                     temp.append(" ");
                     out << temp;
                 } else out << " G ";
@@ -111,17 +132,7 @@ void map::afisare(agent **vectorAgents, powerups **vectorItems, int nrAgents, in
         out << "- ";
 }
 
-void map::afis() {
-    for (int i = 0; i < lines; i++) {
-        for (int j = 0; j < columns; j++)
-            if (table[i][j] >= 0)
-                cout << " " << table[i][j] << " ";
-            else cout << table[i][j] << " ";
-        cout << endl;
-    }
-}
-
-void map::create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems) {
+void map::create(agent **vectorAgenti, powerups **vectorItems, const int nrAgents, const int nrItems) {
     default_random_engine generator;
     uniform_int_distribution<int> distribution;
     int x, y;
@@ -213,7 +224,7 @@ void map::create(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int
     }
 }
 
-std::pair<int, int> map::find(agent *other, int ok) {
+std::pair<int, int> map::find(agent *other, const int ok) {
     pair<int, int> agentPosition = other->getPosition(), nextPosition;
     int x = agentPosition.first, y = agentPosition.second, maxim = -1;
     int dir[4] = {-2, -1, 1, 2};
@@ -345,7 +356,7 @@ std::pair<int, int> map::find(agent *other, int ok) {
     return nextPosition;
 }
 
-agent *findAgent(agent **vectorAgenti, int nrAgents, int x, int y) {
+agent *findAgent(agent **vectorAgenti, const int nrAgents, const int x, const int y) {
     for (int i = 0; i < nrAgents; i++) {
         pair<int, int> agentPosition = vectorAgenti[i]->getPosition();
         if ((agentPosition.first == x) and (agentPosition.second == y)) return vectorAgenti[i];
@@ -353,7 +364,7 @@ agent *findAgent(agent **vectorAgenti, int nrAgents, int x, int y) {
     return nullptr;
 }
 
-powerups *findPowerUp(powerups **vectorItems, int nrItems, int x, int y) {
+powerups *findPowerUp(powerups **vectorItems, const int nrItems, const int x, const int y) {
     for (int i = 0; i < nrItems; i++) {
         pair<int, int> itemPosition = vectorItems[i]->getPowerUpPosition();
         if ((itemPosition.first == x) and (itemPosition.second == y)) return vectorItems[i];
@@ -361,7 +372,7 @@ powerups *findPowerUp(powerups **vectorItems, int nrItems, int x, int y) {
     return nullptr;
 }
 
-int verifExista(agent **vectorAgenti, int nrAgents) {
+const int verifExista(agent **vectorAgenti, int nrAgents) {
     int nrAlive = 0, poz;
     for (int i = 0; i < nrAgents && nrAlive <= 2; i++)
         if (vectorAgenti[i]->getDOA()) {
@@ -373,11 +384,11 @@ int verifExista(agent **vectorAgenti, int nrAgents) {
     return -2;
 }
 
-void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgents, int nrItems, int nrRound) {
+void map::simulateRound(agent **vectorAgenti, powerups **vectorItems,
+                        const int nrAgents, const int nrItems, const int nrRound) {
     for (int i = 0; i < nrAgents; i++) {
         if (vectorAgenti[i]->getDOA()) {
             if (i % 3 == 0) {
-                cout << "It's terorist " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 2);
@@ -404,6 +415,7 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                         if (vectorAgenti[i]->getDOA()) {
                             table[x][y] = 1;
                             vectorAgenti[i]->move(x, y);
+                            temp->move(-1, -1);
                         } else {
                             vectorAgenti[i]->move(-1, -1);
                             if (!temp->getDOA()) {
@@ -414,7 +426,6 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                     } else cout << "Return de agent gresit!\n";
                 }
             } else if (i % 3 == 1) {
-                cout << "It's counter-terorist " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 1);
@@ -451,7 +462,6 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
                     } else cout << "Return de agent gresit!\n";
                 }
             } else if (i % 3 == 2) {
-                cout << "It's mercenary " << i / 3 + 1 << " turn :\n ";
                 pair<int, int> curentPosition, nextPosition;
                 curentPosition = vectorAgenti[i]->getPosition();
                 nextPosition = find(vectorAgenti[i], 1);
@@ -490,9 +500,6 @@ void map::simulateRound(agent **vectorAgenti, powerups **vectorItems, int nrAgen
             }
         }
     }
-    this->afisare(vectorAgenti, vectorItems, nrAgents, nrItems, nrRound);
-    cout << endl << endl;
-    this->afis();
 }
 
 void map::simulate(const int nrAgents, const int nrItems) {
@@ -502,38 +509,68 @@ void map::simulate(const int nrAgents, const int nrItems) {
     powerups *vectorItems[nrItems];
     this->create(vectorAgents, vectorItems, nrAgents, nrItems);
     this->afisare(vectorAgents, vectorItems, nrAgents, nrItems, 0);
-    this->afis();
     do {
-        nrRounds++;
-        cout << "Continuam ?(Y/N)" << '\n';
-        bool ok = true;
+        cout << "Menu : \n";
+        cout << "1.Simulare completa joc\n";
+        cout << "2.Simulare runda\n";
+        cout << "N/n - Iesire\n";
+        cin >> continuare;
+        cout << '\n';
 
-        do {
-            cin >> continuare;
-            if (strchr("YyNn", continuare) == nullptr) {
-                cout << "\nAti introdus un raspuns gresit!\n";
-                cout << "Va rugam introduceti un raspun corect : ";
-            } else ok = false;
-        } while (ok);
-
-        if (verifExista(vectorAgents, nrAgents) == -1) {
-            this->simulateRound(vectorAgents, vectorItems, nrAgents, nrItems, nrRounds);
-        } else if (verifExista(vectorAgents, nrAgents) >= 0) {
-            int i = verifExista(vectorAgents, nrAgents);
-            if (i % 3 == 0) {
-                cout << "A castigat teroristul " << i / 3 + 1;
-                continuare = 'n';
-            } else if (i % 3 == 1) {
-                cout << "A castigat counter-teroristul " << i / 3 + 1;
-                continuare = 'n';
-            } else if (i % 3 == 2) {
-                cout << "A castigat mercenarul " << i / 3 + 1;
-                continuare = 'n';
+        switch (continuare) {
+            case '1' : {
+                do {
+                    this->simulateRound(vectorAgents, vectorItems, nrAgents, nrItems, ++nrRounds);
+                } while (verifExista(vectorAgents, nrAgents) == -1);
+                cout << '\n';
+                int final = verifExista(vectorAgents, nrAgents);
+                if (final == -2) {
+                    continuare = 'n';
+                    cout << "Nu se mai poate simula!\nNu mai exista agenti in viata!\nE egalitate!\nLa revedere!\n";
+                    this->afisare(vectorAgents, vectorItems, nrAgents, nrItems, nrRounds);
+                } else if (final >= 0) {
+                    if (final % 3 == 0) {
+                        cout << "A castigat teroristul " << final / 3 + 1;
+                        continuare = 'n';
+                    } else if (final % 3 == 1) {
+                        cout << "A castigat counter-teroristul " << final / 3 + 1;
+                        continuare = 'n';
+                    } else if (final % 3 == 2) {
+                        cout << "A castigat mercenarul " << final / 3 + 1;
+                        continuare = 'n';
+                    }
+                    this->afisare(vectorAgents, vectorItems, nrAgents, nrItems, nrRounds);
+                }
+                break;
             }
-        } else if (verifExista(vectorAgents, nrAgents) == -2) {
-            continuare = 'n';
-            cout << "Nu se mai poate simula!\nNu mai exista agenti in viata!\nE egalitate!\nLa revedere!\n";
+            case '2' : {
+                nrRounds++;
+                if (verifExista(vectorAgents, nrAgents) == -1) {
+                    this->simulateRound(vectorAgents, vectorItems, nrAgents, nrItems, nrRounds);
+                    this->afisare(vectorAgents, vectorItems, nrAgents, nrItems, nrRounds);
+                } else if (verifExista(vectorAgents, nrAgents) >= 0) {
+                    int i = verifExista(vectorAgents, nrAgents);
+                    if (i % 3 == 0) {
+                        cout << "A castigat teroristul " << i / 3 + 1;
+                        continuare = 'n';
+                    } else if (i % 3 == 1) {
+                        cout << "A castigat counter-teroristul " << i / 3 + 1;
+                        continuare = 'n';
+                    } else if (i % 3 == 2) {
+                        cout << "A castigat mercenarul " << i / 3 + 1;
+                        continuare = 'n';
+                    }
+                } else if (verifExista(vectorAgents, nrAgents) == -2) {
+                    continuare = 'n';
+                    cout << "Nu se mai poate simula!\nNu mai exista agenti in viata!\nE egalitate!\nLa revedere!\n";
+                }
+                cout << endl;
+                break;
+            }
+            default :
+                cout << "Ati introdus un raspuns gresit!\nVa rugam introduceti unul corect!\n";
+                break;
         }
-    } while (continuare == 'Y' or continuare == 'y');
-    cout << endl;
+
+    } while (continuare == '1' or continuare == '2');
 }

@@ -8,23 +8,25 @@
 
 #include "agent.h"
 
+using namespace std;
+
 class CounterTerorist : public agent {
     int ExtraDefence;
 
 public:
-    CounterTerorist(int x, int y, int extraDef = 30) : agent(250, 150 + extraDef, 130, x, y) {
+    CounterTerorist(const int x, const int y, const int extraDef = 30) : agent(250, 150 + extraDef, 130, x, y) {
         ExtraDefence = extraDef;
     }
 
-    void setExtraDefence(int atribute);
+    void setExtraDefence(const int atribute);
 
-    int getExtraDefence();
+    const int getExtraDefence();
 
-    int getAttackingPower();
+    const int getAttackingPower();
 
-    std::pair<int, int> getPosition();
+    pair<int, int> getPosition();
 
-    void receivingAttack(int enemyAttackingPower);
+    void receivingAttack(const int enemyAttackingPower);
 
     virtual ~CounterTerorist();
 

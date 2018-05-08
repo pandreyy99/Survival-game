@@ -3,7 +3,6 @@
 //
 
 #include "CounterTerorist.h"
-#include <iostream>
 
 using namespace std;
 
@@ -11,23 +10,23 @@ CounterTerorist::~CounterTerorist() {
     ExtraDefence = 0;
 }
 
-void CounterTerorist::setExtraDefence(int atribute) {
+void CounterTerorist::setExtraDefence(const int atribute) {
     ExtraDefence = atribute;
 }
 
-int CounterTerorist::getExtraDefence() {
+const int CounterTerorist::getExtraDefence() {
     return ExtraDefence;
 }
 
-int CounterTerorist::getAttackingPower() {
+const int CounterTerorist::getAttackingPower() {
     return this->getAttackPower();
 }
 
-std::pair<int, int> CounterTerorist::getPosition() {
+pair<int, int> CounterTerorist::getPosition() {
     return position;
 }
 
-void CounterTerorist::receivingAttack(int enemyAttackingPower) {
+void CounterTerorist::receivingAttack(const int enemyAttackingPower) {
     this->setDefence(this->getDefence() - enemyAttackingPower);
     if (this->getDefence() < 0) {
         this->setLifePoint(this->getLifePoint() + this->getDefence());
@@ -35,4 +34,3 @@ void CounterTerorist::receivingAttack(int enemyAttackingPower) {
         this->setDOA(this->getLifePoint());
     }
 }
-

@@ -5,7 +5,9 @@
 #include <cstring>
 #include "agent.h"
 
-agent::agent(int lp, int def, int att, int x, int y) {
+using namespace std;
+
+agent::agent(const int lp, const int def, const int att, const int x, const int y) {
     lifePoint = lp;
     defence = def;
     attackPower = att;
@@ -14,35 +16,35 @@ agent::agent(int lp, int def, int att, int x, int y) {
     deadOrAlive = true;
 }
 
-void agent::setLifePoint(int atribute) {
+void agent::setLifePoint(const int atribute) {
     lifePoint = atribute;
 }
 
-int agent::getLifePoint() {
+const int agent::getLifePoint() {
     return lifePoint;
 }
 
-void agent::setDefence(int atribute) {
+void agent::setDefence(const int atribute) {
     defence = atribute;
 }
 
-int agent::getDefence() {
+const int agent::getDefence() {
     return defence;
 }
 
-void agent::setAttackPower(int atribute) {
+void agent::setAttackPower(const int atribute) {
     attackPower = atribute;
 }
 
-int agent::getAttackPower() {
+const int agent::getAttackPower() {
     return attackPower;
 }
 
-std::pair<int, int> agent::getPosition() {
+pair<int, int> agent::getPosition() {
     return position;
 }
 
-void agent::setDOA(int atribute) {
+void agent::setDOA(const int atribute) {
     if (atribute > 0) deadOrAlive = true;
     else deadOrAlive = false;
 }
@@ -57,13 +59,13 @@ void agent::powerup(powerups &powerup) {
     attackPower += powerup.getFood();
 }
 
-agent::~ agent() {
+agent::~agent() {
     lifePoint = defence = attackPower = 0;
     position = std::make_pair(0, 0);
     deadOrAlive = false;
 }
 
-void agent::move(int x, int y) {
+void agent::move(const int x, const int y) {
     position.first = x;
     position.second = y;
 }
